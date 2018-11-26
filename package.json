@@ -6,7 +6,9 @@
     "lint": "eslint --ext js,md .",
     "test": "jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "debug": "^4.1.0"
+  },
   "devDependencies": {
     "eslint": "^5.9.0",
     "eslint-config-concise": "^0.34.0",

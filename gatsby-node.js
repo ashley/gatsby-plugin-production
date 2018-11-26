@@ -1,5 +1,7 @@
 'use strict'
 
+const createDebug = require('debug')
+
 exports.onCreateWebpackConfig = ({
   config,
   stage,
@@ -7,11 +9,16 @@ exports.onCreateWebpackConfig = ({
   plugins,
   getConfig,
 }) => {
+  const debug = createDebug(`gatsby-plugin-production:${stage}`)
   if (process.env.NODE_ENV !== 'production') {
+    debug(`process.env.NODE_ENV = ${process.env.NODE_ENV}`)
     return config
   }
 
   const webpackConfig = getConfig()
+
+  debug('before: %o', webpackConfig)
+
   webpackConfig.devtool = 'hidden-source-map'
   webpackConfig.mode = 'production'
   webpackConfig.module.rules
@@ -68,6 +75,8 @@ exports.onCreateWebpackConfig = ({
   }
 
   actions.replaceWebpackConfig(webpackConfig)
+
+  debug('after: %o', webpackConfig)
 
   return config
 }
