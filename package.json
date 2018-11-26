@@ -26,7 +26,8 @@
   },
   "files": [
     "*.md",
-    "index.js"
+    "index.js",
+    "gatsby-node.js"
   ],
   "keywords": [],
   "lint-staged": {
