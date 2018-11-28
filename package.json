@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-production",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Opinionated production config.",
   "scripts": {
     "lint": "eslint --ext js,md .",
