@@ -22,6 +22,24 @@ exports.onCreateWebpackConfig = ({
   webpackConfig.devtool = 'hidden-source-map'
   webpackConfig.mode = 'production'
   webpackConfig.module.rules
+    .map(rule => {
+      if (rule.use) {
+        rule.use
+          .filter(
+            x =>
+              x.loader.indexOf('/file-loader/') > -1 ||
+              x.loader.indexOf('/url-loader/') > -1,
+          )
+          .forEach(loader => {
+            // eslint-disable-next-line no-param-reassign
+            loader.options.name = loader.options.name.replace(
+              '[name]-[hash].[ext]',
+              '[hash].[ext]',
+            )
+          })
+      }
+      return rule
+    })
     .filter(x => x.oneOf)
     .forEach(rule => {
       rule.oneOf
